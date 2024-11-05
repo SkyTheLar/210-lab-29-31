@@ -1,4 +1,10 @@
 Project Overview:
-My project will simulate different drinks being ordered and served at a cafe. The simulation will run over 48 ten-minute intervals to simulate 8 hours of the cafe being open.
+My project will simulate different drinks being ordered and served at a cafe. The simulation will run over 48 "ten-minute" intervals to simulate 8 hours of the cafe being open.
 
 Implementation:
+I will use a std::map to hold the data for different drinks being sold at the cafe. The keys of the map will be the names of the drinks. The values of the map will be a std::array of three std::lists, representing drinks ordered, drinks made, and drinks served. The data in the lists will represent the names of people who have ordered the drinks with the most recent orders at the end of the list.
+
+One map entry would represent a single drink at the cafe. For example, one map entry could be "Mocha." The array of lists would represent drinks ordered, made, and served respectively. The list items would be the names given on each order. For example, if "Steve" ordered a mocha, "Steve" would be added to the back of the ordered list in "Mocha". If "Steve" was the first customer of the day to order a mocha and Steve received his mocha, "Steve" would be the first item on the served list in "Mocha."
+
+Simulated Events:
+The simulated events will be a drink being ordered, a drink on the ordered list being made, and a drink on the made list being served. The probability of each event will be independent of the other events. For the drinks ordered event, a total random number of drinks within a reasonable range will be ordered, and that many names will be added to the back of the ordered list of random std::map items. Drinks ordered is the only event where std::map variables aren't considered independently. For any given std::map variable, a random number of names at the front of the ordered list with probability inversely proportional to the size of the number will be moved to the back of the made list. For the served event, each std::map member will move a constant number of drinks from the made list to the served list, or, if there are less than that many drinks on the made list, the entire made list will move to the served list. 
