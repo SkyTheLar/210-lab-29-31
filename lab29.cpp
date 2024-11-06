@@ -89,7 +89,7 @@ int main() {
 		     << "; Ordered:";
 		for (string n : pair.second[0])
 			cout << " " << n;
-		cout << "; Made: ";
+		cout << "; Made:";
 		for (string n : pair.second[1])
 			cout << " " << n;
 		}
@@ -121,9 +121,9 @@ void timeCycle(map<string, array<list<string>, 3>> &cafe, string drinks[]) {
 	//test moving name from ordered to made
 	/********************************************************************/
 
-	for (auto pair : cafe) {
-		pair.second[1].push_back(*pair.second[0].begin());
-		pair.second[0].pop_front();
+	for (auto it = cafe.begin(); it != cafe.end(); it++) {
+		it->second[1].push_back(*it->second[0].begin());
+		it->second[0].erase(it->second[0].begin());
 	}
 
 	/********************************************************************/
