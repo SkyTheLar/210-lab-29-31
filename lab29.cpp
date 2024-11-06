@@ -74,9 +74,29 @@ int main() {
 		for (string n : pair.second[0])
 			cout << n << " ";
 	}
+	cout << "\n\n";
 
 	/****************************************************/
 	//end map test
+
+	//test time interval function
+	/****************************************************/
+
+	timeCycle(cafe, drinks);
+
+	for (auto pair : cafe) {
+		cout << "Drink: " << pair.first
+		     << "; Ordered:";
+		for (string n : pair.second[0])
+			cout << " " << n;
+		cout << "; Made: ";
+		for (string n : pair.second[1])
+			cout << " " << n;
+		}
+	cout << "\n\n";
+
+	/****************************************************/
+	//end function test
 
 	//begin simulation
 		//loop through simulation function for 48 intervals
@@ -101,8 +121,20 @@ void timeCycle(map<string, array<list<string>, 3>> &cafe, string drinks[]) {
 	//test moving name from ordered to made
 	/********************************************************************/
 
+	for (auto pair : cafe) {
+		pair.second[1].push_back(*pair.second[0].begin());
+		pair.second[0].pop_front();
+	}
 
+	/********************************************************************/
+	//end test
 
+	//confirm drinks array
+	/********************************************************************/
+
+	for (int i = 0; i < 3; i++)
+		cout << drinks[i] << " ";
+	cout << "\n\n";
 
 	/********************************************************************/
 	//end test
