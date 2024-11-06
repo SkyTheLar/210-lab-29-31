@@ -15,14 +15,14 @@ using namespace std;
 //define constants
 	//time intervals, max drinks ordered,
 	//max drinks served, number of names, number of drinks
-int const INTERVALS = 48, MAX_OR = 10, MAX_SV = 10, NAMES = 3, DRINKS = 41;
+int const INTERVALS = 48, MAX_OR = 10, MAX_SV = 10, NAMES = 3, DRINKS = 3;
 
 //function prototypes
 //random name function
 	//parameters: array of size names; returns: string
 string getName(string[]);
 //one time cycle function
-void timeCycle(map<string, array<list<string>, 3>>, string[]);
+void timeCycle(map<string, array<list<string>, 3>>&, string[]);
 	//parameters: map of drinks by reference, array of keys; returns: nothing
 
 //define main function
@@ -33,11 +33,16 @@ int main() {
 	//initialize array for names
 	string names[NAMES] = {"name1", "name2", "name3"};
 	//initialize array for drink names
-	string drinks[DRINKS];
+	string drinks[DRINKS] = {"drink1", "drink2", "drink3"};
 
 	//test of random name function
+	/**********************************************************/
 
+	for (int i = 0; i < 10; i++)
+		cout << getName(names) << " ";
+	cout << "\n\n";
 
+	/**********************************************************/
 	//end random name test
 
 	//open people names file
@@ -92,6 +97,16 @@ string getName(string names[]) {
 }
 
 //time simulation function
+void timeCycle(map<string, array<list<string>, 3>> &cafe, string drinks[]) {
+	//test moving name from ordered to made
+	/********************************************************************/
+
+
+
+
+	/********************************************************************/
+	//end test
+
 	//beginning of interval flag
 		//"10 minutes pass"
 
@@ -116,4 +131,4 @@ string getName(string names[]) {
 			//serve all the drinks
 		//display drinks served for each drink on one line
 			//"Mocha was served to: Cassie, Lena, Joe, Tim"
-
+}
