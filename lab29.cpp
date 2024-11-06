@@ -50,6 +50,9 @@ COMSC 210 | Lab 29 | Skylar Robinson | IDE Used: Eclipse
 	//return that name in passed array
 
 //time simulation function
+	//beginning of interval flag
+		//"10 minutes pass"
+
 	//choose random number of drinks to be ordered
 	//loop for each drink
 		//random index from drink array
@@ -61,11 +64,14 @@ COMSC 210 | Lab 29 | Skylar Robinson | IDE Used: Eclipse
 	//loop for each map element
 		//random number drinks to be made
 		//move that many names from the front of ordered to the back of made
-
+		//display drinks made for each drink on one line
+			//"Mocha was made for: Cassie, Lena, Joe"
 
 	//loop for each map element
 		//if made.length >= max drinks served
 			//serve that many drinks
 		//else
 			//serve all the drinks
+		//display drinks served for each drink on one line
+			//"Mocha was served to: Cassie, Lena, Joe, Tim"
 
