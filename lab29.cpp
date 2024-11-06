@@ -19,14 +19,19 @@ int const INTERVALS = 48, MAX_OR = 10, MAX_SV = 10, NAMES = 99, DRINKS = 41;
 //function prototypes
 //random name function
 	//parameters: array of size names; returns: string
+string getName(string[]);
 //one time cycle function
+void timeCycle(map<string, array<list<string>, 3>>, string[]);
 	//parameters: map of drinks by reference, array of keys; returns: nothing
 
 //define main function
 int main() {
 	//initialize map with string keys and array of 3 lists value
+	map<string, array<list<string>, 3>> cafe;
 	//initialize array for names
+	string names[NAMES];
 	//initialize array for drink names
+	string drinks[DRINKS];
 
 	//open people names file
 		//check for file open error
