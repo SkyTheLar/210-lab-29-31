@@ -14,7 +14,7 @@ COMSC 210 | Lab 29 | Skylar Robinson | IDE Used: Eclipse
 //random name function
 	//parameters: array of size names; returns: string
 //one time cycle function
-	//parameters: map of drinks by reference, , returns nothing
+	//parameters: map of drinks by reference, array of keys; returns: nothing
 
 //define main function
 	//initialize map with string keys and array of 3 lists value
@@ -51,6 +51,21 @@ COMSC 210 | Lab 29 | Skylar Robinson | IDE Used: Eclipse
 
 //time simulation function
 	//choose random number of drinks to be ordered
+	//loop for each drink
+		//random index from drink array
+		//temp random name
+		//add random name to map of with key from drink array
+		//display names and drinks ordered
+			//"Hannah ordered Coffee"
+
+	//loop for each map element
+		//random number drinks to be made
+		//move that many names from the front of ordered to the back of made
 
 
+	//loop for each map element
+		//if made.length >= max drinks served
+			//serve that many drinks
+		//else
+			//serve all the drinks
 
