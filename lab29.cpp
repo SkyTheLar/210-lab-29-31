@@ -9,12 +9,13 @@ COMSC 210 | Lab 29 | Skylar Robinson | IDE Used: Eclipse
 #include <array>
 #include <list>
 #include <map>
+#include <ctime>
 using namespace std;
 
 //define constants
 	//time intervals, max drinks ordered,
 	//max drinks served, number of names, number of drinks
-int const INTERVALS = 48, MAX_OR = 10, MAX_SV = 10, NAMES = 99, DRINKS = 41;
+int const INTERVALS = 48, MAX_OR = 10, MAX_SV = 10, NAMES = 3, DRINKS = 41;
 
 //function prototypes
 //random name function
@@ -26,12 +27,18 @@ void timeCycle(map<string, array<list<string>, 3>>, string[]);
 
 //define main function
 int main() {
+	srand(time(0));
 	//initialize map with string keys and array of 3 lists value
 	map<string, array<list<string>, 3>> cafe;
 	//initialize array for names
-	string names[NAMES];
+	string names[NAMES] = {"name1", "name2", "name3"};
 	//initialize array for drink names
 	string drinks[DRINKS];
+
+	//test of random name function
+
+
+	//end random name test
 
 	//open people names file
 		//check for file open error
@@ -49,6 +56,23 @@ int main() {
 
 	//close file
 
+	//test of cafe map
+	/****************************************************/
+
+	array<list<string>, 3> temp;
+	temp[0].push_back("Lucy");
+	cafe.insert({"Coffee", temp});
+
+	for (auto pair : cafe) {
+		cout << "Drink: " << pair.first
+			 << "; Ordered: ";
+		for (string n : pair.second[0])
+			cout << n << " ";
+	}
+
+	/****************************************************/
+	//end map test
+
 	//begin simulation
 		//loop through simulation function for 48 intervals
 
@@ -60,8 +84,12 @@ int main() {
 }
 
 //random name function
+string getName(string names[]) {
 	//select random index from 0 to names - 1
+	int ind = rand() % NAMES;
 	//return that name in passed array
+	return names[ind];
+}
 
 //time simulation function
 	//beginning of interval flag
