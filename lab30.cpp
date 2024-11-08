@@ -28,16 +28,6 @@ int main() {
 	//initialize array for drink names
 	string drinks[DRINKS];
 
-	//test of random name function
-	/**********************************************************/
-
-	for (int i = 0; i < 10; i++)
-		cout << getName(names) << " ";
-	cout << "\n\n";
-
-	/**********************************************************/
-	//end random name test
-
 	//open people names file
 	ifstream in;
 	in.open("alphanames.txt");
@@ -48,30 +38,44 @@ int main() {
 	}
 
 	//read names into names array
+	int i = 0;
+	while (getline(in, names[i]))
+		i++;
 
 	//close file
+	in.close();
 
 	//open file of drink names
-		//check for file open error
+	in.open("alphadrinks.txt");
+	//check for file open error
+	if (!in) {
+		cout << "File error.\n";
+		return -1;
+	}
 
 	//populate map keys with drink names
 	//populate drink names array with same data
-	//add an initial 1 name to each ordered list
+	i = 0;
+	while(getline(in, drinks[i])) {
+		//add an initial 1 name to each ordered list
+		array<list<string>, 3> temp;
+		temp[0].push_back(getName(names));
+		cafe.insert({drinks[i], temp});
+		i++;
+	}
 
 	//close file
+	in.close();
 
 	//test of cafe map
 	/****************************************************/
-
-	array<list<string>, 3> temp;
-	temp[0].push_back("Lucy");
-	cafe.insert({"Coffee", temp});
 
 	for (auto pair : cafe) {
 		cout << "Drink: " << pair.first
 			 << "; Ordered: ";
 		for (string n : pair.second[0])
 			cout << n << " ";
+		cout << endl;
 	}
 	cout << "\n\n";
 
@@ -124,16 +128,6 @@ void timeCycle(map<string, array<list<string>, 3>> &cafe, string drinks[]) {
 		it->second[1].push_back(*it->second[0].begin());
 		it->second[0].erase(it->second[0].begin());
 	}
-
-	/********************************************************************/
-	//end test
-
-	//confirm drinks array
-	/********************************************************************/
-
-	for (int i = 0; i < 3; i++)
-		cout << drinks[i] << " ";
-	cout << "\n\n";
 
 	/********************************************************************/
 	//end test
