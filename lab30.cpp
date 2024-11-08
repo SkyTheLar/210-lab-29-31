@@ -17,7 +17,7 @@ using namespace std;
 int const INTERVALS = 48, MAX_OR = 10, MAX_SV = 10, NAMES = 3, DRINKS = 5;
 
 string getName(string[]); //random name function
-void timeCycle(map<string, array<list<string>, 3>>&, string[]); //one time cycle function
+void timeCycle(map<string, array<list<string>, 3>>&, string[], string[]); //one time cycle function
 
 int main() {
 	srand(time(0));
@@ -73,7 +73,6 @@ int main() {
 			 << "; Ordered: ";
 		for (string n : pair.second[0])
 			cout << n << " ";
-		cout << "; Made: "
 		cout << endl;
 	}
 	cout << "\n\n";
@@ -98,7 +97,7 @@ string getName(string names[]) {
 }
 
 //time simulation function
-void timeCycle(map<string, array<list<string>, 3>> &cafe, string drinks[]) {
+void timeCycle(map<string, array<list<string>, 3>> &cafe, string drinks[], string names[]) {
 	//test moving name from ordered to made
 	/********************************************************************/
 
@@ -111,15 +110,20 @@ void timeCycle(map<string, array<list<string>, 3>> &cafe, string drinks[]) {
 	//end test
 
 	//beginning of interval flag
-		//"10 minutes pass"
+	static int counter = 1;
+	cout << "Time interval " << counter;
 
 	//choose random number of drinks to be ordered
+	int ordered = (rand() % MAX_OR) + 1;
 	//loop for each drink
+	for (int i = 0; i < ordered; i++) {
 		//random index from drink array
 		//temp random name
+		string temp = getName(names);
 		//add random name to map of with key from drink array
 		//display names and drinks ordered
 			//"Hannah ordered Coffee"
+	}
 
 	//loop for each map element
 		//random number drinks to be made
@@ -134,4 +138,6 @@ void timeCycle(map<string, array<list<string>, 3>> &cafe, string drinks[]) {
 			//serve all the drinks
 		//display drinks served for each drink on one line
 			//"Mocha was served to: Cassie, Lena, Joe, Tim"
+
+	counter++;
 }
