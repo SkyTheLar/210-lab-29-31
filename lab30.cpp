@@ -67,39 +67,17 @@ int main() {
 	//close file
 	in.close();
 
-	//test of cafe map
-	/****************************************************/
-
+	//display starting list
 	for (auto pair : cafe) {
 		cout << "Drink: " << pair.first
 			 << "; Ordered: ";
 		for (string n : pair.second[0])
 			cout << n << " ";
+		cout << "; Made: "
 		cout << endl;
 	}
 	cout << "\n\n";
 
-	/****************************************************/
-	//end map test
-
-	//test time interval function
-	/****************************************************/
-
-	timeCycle(cafe, drinks);
-
-	for (auto pair : cafe) {
-		cout << "Drink: " << pair.first
-		     << "; Ordered:";
-		for (string n : pair.second[0])
-			cout << " " << n;
-		cout << "; Made:";
-		for (string n : pair.second[1])
-			cout << " " << n;
-		}
-	cout << "\n\n";
-
-	/****************************************************/
-	//end function test
 
 	//begin simulation
 		//loop through simulation function for 48 intervals
