@@ -117,10 +117,16 @@ void timeCycle(map<string, array<list<string>, 3>> &cafe, string drinks[], strin
 	int ordered = (rand() % MAX_OR) + 1;
 	//loop for each drink
 	for (int i = 0; i < ordered; i++) {
-		//random index from drink array
 		//temp random name
 		string temp = getName(names);
-		//add random name to map of with key from drink array
+		//random index from drink array
+		auto it = cafe.find(drinks[rand() % DRINKS]);
+		//add random name to map item with key from drink array
+		if (it == cafe.end()) {
+			cout << "Range error.\n";
+			return;
+		}
+
 		//display names and drinks ordered
 			//"Hannah ordered Coffee"
 	}
