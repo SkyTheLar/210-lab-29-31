@@ -1,0 +1,8 @@
+To test the random getName function, a driver program will
+run a loop populating an array with the function outputs while
+running the function on a two item array. The program will
+	1: confirm that the array is full
+	2: confirm that the probability of a given name 
+	   is close to 50%
+	   
+To test the 

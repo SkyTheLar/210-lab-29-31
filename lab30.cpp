@@ -14,7 +14,7 @@ COMSC 210 | Lab 29 | Skylar Robinson | IDE Used: Eclipse
 using namespace std;
 
 //define constants
-int const INTERVALS = 48, MAX_OR = 10, MAX_SV = 10, NAMES = 3, DRINKS = 5;
+int const INTERVALS = 48, MAX_OR = 10, MAX_SV = 2, NAMES = 3, DRINKS = 5;
 
 string getName(string[]); //random name function
 int numMade(); //random number increasingly less likely to be higher
