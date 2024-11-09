@@ -21,13 +21,14 @@ int numMade(); //random number increasingly less likely to be higher
 void timeCycle(map<string, array<list<string>, 3>>&, string[], string[]); //one time cycle function
 
 //test functions
+bool timeCycleTests(map<string, array<list<string>, 3>>&, string[], string[]);
 bool testGetName() {
 	string output[100];
 	string input[NAMES] = {"name1", "name2", "name3"};
 	for (int i = 0; i < 100; i++) {
 		output[i] = getName(input);
 	}
-	//test conditions
+	//test condition
 	for (int i = 0; i < 100; i++) {
 		if (output[i] == "") {
 			return false;
@@ -35,6 +36,7 @@ bool testGetName() {
 	}
 	return true;
 }
+
 int main() {
 	srand(time(0));
 
@@ -91,6 +93,14 @@ int main() {
 
 	//close file
 	in.close();
+
+	if (timeCycleTests()) {
+		cout << "Time cycle test passed!\n\n";
+	} else {
+		cout << "Time cycle test failed :(\n\n";
+		return -1;
+	}
+
 
 	//display starting list
 	for (auto pair : cafe) {
@@ -214,4 +224,73 @@ void timeCycle(map<string, array<list<string>, 3>> &cafe, string drinks[], strin
 	cout << endl;
 
 	counter++;
+}
+
+//time cycle function, exactly copied with only additions for tests
+bool timeCycleTests(map<string, array<list<string>, 3>> &cafe, string drinks[], string names[]) {
+	//beginning of interval flag
+	static int counter = 1;
+	cout << "Time interval " << counter << ":\n\n";
+
+	//choose random number of drinks to be ordered
+	int ordered = (rand() % MAX_OR) + 1;
+	//loop for each drink
+	for (int i = 0; i < ordered; i++) {
+		//temp random name
+		string temp = getName(names);
+		//random index from drink array
+		auto it = cafe.find(drinks[rand() % DRINKS]);
+		if (it == cafe.end()) {
+			cout << "Range error.\n";
+			return false;
+		}
+		//add random name to map item with key from drink array
+		it->second[0].push_back(temp);
+
+		//display names and drinks ordered
+		cout << temp << " ordered " << it->first << endl;
+	}
+	cout << endl;
+
+	//loop for each map element
+	for (auto it = cafe.begin(); it != cafe.end(); it++) {
+		//random number drinks to be made
+		//move that many names from the front of ordered to the back of made
+		cout << it->first << " was made for: ";
+		for (int i = 0; i < numMade(); i++) {
+			if (it->second[0].begin() != it->second[0].end()){ //if the list isn't empty
+			    it->second[1].push_back(*it->second[0].begin());
+			    //display drinks made for each drink on one line
+			    cout << *it->second[0].begin() << ", ";
+			    it->second[0].erase(it->second[0].begin());
+			}
+		}
+		cout << endl;
+	}
+	cout << endl;
+
+	//loop for each map element
+	for (auto it = cafe.begin(); it != cafe.end(); it++) {
+		int toServe;
+		//if made.length >= max drinks served
+		if (it->second[1].size() >= MAX_SV)
+			//serve that many drinks
+			toServe = MAX_SV;
+		else
+			//serve all the drinks
+			toServe = it->second[1].size();
+
+		cout << it->first << " served to: ";
+		for (int i = 0; i < toServe; i++) {
+			it->second[2].push_back(*it->second[1].begin());
+			//display drinks served for each drink on one line
+		    cout << *it->second[1].begin() << ", ";
+			it->second[1].erase(it->second[1].begin());
+		}
+		cout << endl;
+	}
+	cout << endl;
+
+	counter++;
+	return true;
 }
