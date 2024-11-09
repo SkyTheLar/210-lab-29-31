@@ -154,10 +154,10 @@ void timeCycle(map<string, array<list<string>, 3>> &cafe, string drinks[], strin
 		//move that many names from the front of ordered to the back of made
 		cout << it->first << " was made for: ";
 		for (int i = 0; i < numMade(); i++) {
-			if (it != cafe.end()){
+			if (it->second[0].begin() != it->second[0].end()){ //if the list isn't empty
 			    it->second[1].push_back(*it->second[0].begin());
 			    //display drinks made for each drink on one line
-			    cout << *it->second[0].begin() << " ";
+			    cout << *it->second[0].begin() << ", ";
 			    it->second[0].erase(it->second[0].begin());
 			}
 		}
@@ -167,12 +167,20 @@ void timeCycle(map<string, array<list<string>, 3>> &cafe, string drinks[], strin
 
 	//loop for each map element
 	for (auto it = cafe.begin(); it != cafe.end(); it++) {
+		int toServe;
 		//if made.length >= max drinks served
+		if (it->second[3].size >= MAX_SV)
 			//serve that many drinks
-		//else
+			toServe = MAX_SV;
+		else
 			//serve all the drinks
+			toServe = it->second[3].size;
+
+		for (int i = 0; i < toServe; i++) {
+		it->second[2].push_back(*it->second[1].begin());
+				    it->second[1].erase(it->second[1].begin());
 		//display drinks served for each drink on one line
-			//"Mocha was served to: Cassie, Lena, Joe, Tim"
+		}
 	}
 
 	counter++;
