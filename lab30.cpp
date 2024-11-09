@@ -14,7 +14,7 @@ COMSC 210 | Lab 29 | Skylar Robinson | IDE Used: Eclipse
 using namespace std;
 
 //define constants
-int const INTERVALS = 48, MAX_OR = 10, MAX_SV = 2, NAMES = 3, DRINKS = 5;
+int const INTERVALS = 4, MAX_OR = 10, MAX_SV = 2, NAMES = 3, DRINKS = 5;
 
 string getName(string[]); //random name function
 int numMade(); //random number increasingly less likely to be higher
@@ -22,16 +22,30 @@ void timeCycle(map<string, array<list<string>, 3>>&, string[], string[]); //one 
 
 //test functions
 bool testGetName() {
-	bool pass;
 	string output[100];
-	string input[2] = {"name1", "name2"};
+	string input[NAMES] = {"name1", "name2", "name3"};
 	for (int i = 0; i < 100; i++) {
 		output[i] = getName(input);
 	}
-	return pass;
+	//test conditions
+	for (int i = 0; i < 100; i++) {
+		if (output[i] == "") {
+			return false;
+		}
+	}
+	return true;
 }
 int main() {
 	srand(time(0));
+
+	//run tests
+	if (testGetName()) {
+		cout << "Get name test passed!\n\n";
+	} else {
+		cout << "Get name test failed :(\n\n";
+		return -1;
+	}
+
 	//initialize map with string keys and array of 3 lists value
 	map<string, array<list<string>, 3>> cafe;
 	//initialize array for names
