@@ -85,6 +85,9 @@ int main() {
 				 << "; Ordered: ";
 			for (string n : pair.second[0])
 				cout << n << " ";
+			cout << "; Made: ";
+			for (string n : pair.second[1])
+				cout << n << " ";
 			cout << endl;
 		}
 		cout << "\n\n";
@@ -107,24 +110,20 @@ string getName(string names[]) {
 	return names[ind];
 }
 
-//random made number functon
+//random made number function
 int numMade() {
-
+	int n = 0;
+	bool again = true;
+	while(again) {
+		n++;
+		if ((rand() % 100) <= 50)
+			again = false;
+	}
+	return n;
 }
 
 //time simulation function
 void timeCycle(map<string, array<list<string>, 3>> &cafe, string drinks[], string names[]) {
-	//test moving name from ordered to made
-	/********************************************************************/
-
-	for (auto it = cafe.begin(); it != cafe.end(); it++) {
-		it->second[1].push_back(*it->second[0].begin());
-		it->second[0].erase(it->second[0].begin());
-	}
-
-	/********************************************************************/
-	//end test
-
 	//beginning of interval flag
 	static int counter = 1;
 	cout << "Time interval " << counter << ":\n\n";
@@ -147,14 +146,24 @@ void timeCycle(map<string, array<list<string>, 3>> &cafe, string drinks[], strin
 		//display names and drinks ordered
 		cout << temp << " ordered " << it->first << endl;
 	}
+	cout << endl;
 
 	//loop for each map element
 	for (auto it = cafe.begin(); it != cafe.end(); it++) {
 		//random number drinks to be made
 		//move that many names from the front of ordered to the back of made
-		//display drinks made for each drink on one line
-			//"Mocha was made for: Cassie, Lena, Joe"
+		cout << it->first << " was made for: ";
+		for (int i = 0; i < numMade(); i++) {
+			if (it != cafe.end()){
+			    it->second[1].push_back(*it->second[0].begin());
+			    //display drinks made for each drink on one line
+			    cout << *it->second[0].begin() << " ";
+			    it->second[0].erase(it->second[0].begin());
+			}
+		}
+		cout << endl;
 	}
+	cout << endl;
 
 	//loop for each map element
 	for (auto it = cafe.begin(); it != cafe.end(); it++) {
