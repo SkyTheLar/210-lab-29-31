@@ -5,6 +5,6 @@ confirm that the array is full
 	   
 To test the timeCycle function a driver program will run
 the function, saving the theoretical values of each list
-in a parallel array. After the function is run the lists
-be compared to the array to make sure they match. The funciton
-will be run and tested 10 times.
+in a parallel list. After the function is run the lists
+be compared to the parallel list to make sure they match.
+The funciton will be run and tested 10 times.

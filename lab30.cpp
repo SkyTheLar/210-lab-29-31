@@ -94,13 +94,13 @@ int main() {
 	//close file
 	in.close();
 
-	if (timeCycleTests()) {
-		cout << "Time cycle test passed!\n\n";
-	} else {
-		cout << "Time cycle test failed :(\n\n";
-		return -1;
-	}
-
+	//second test
+	for (int i = 0; i < 10; i++)
+		if (!timeCycleTests(cafe, drinks, names)) {
+			cout << "Time cycle test failed :(\n\n";
+			return -1;
+		}
+	cout << "Time cycle test passed!\n\n";
 
 	//display starting list
 	for (auto pair : cafe) {
@@ -232,6 +232,9 @@ bool timeCycleTests(map<string, array<list<string>, 3>> &cafe, string drinks[], 
 	static int counter = 1;
 	cout << "Time interval " << counter << ":\n\n";
 
+	/*************************************/
+	list<string> check1, check2;
+	/*************************************/
 	//choose random number of drinks to be ordered
 	int ordered = (rand() % MAX_OR) + 1;
 	//loop for each drink
@@ -244,8 +247,16 @@ bool timeCycleTests(map<string, array<list<string>, 3>> &cafe, string drinks[], 
 			cout << "Range error.\n";
 			return false;
 		}
+		/*************************************/
+		check1 = it->second[0];
+		check1.push_back(temp);
+		/*************************************/
 		//add random name to map item with key from drink array
 		it->second[0].push_back(temp);
+		/*************************************/
+		if (check1 != it->second[0])
+			return false;
+		/*************************************/
 
 		//display names and drinks ordered
 		cout << temp << " ordered " << it->first << endl;
@@ -257,13 +268,19 @@ bool timeCycleTests(map<string, array<list<string>, 3>> &cafe, string drinks[], 
 		//random number drinks to be made
 		//move that many names from the front of ordered to the back of made
 		cout << it->first << " was made for: ";
+		check1 = it->second[0];
+		check2 = it->second[1];
 		for (int i = 0; i < numMade(); i++) {
 			if (it->second[0].begin() != it->second[0].end()){ //if the list isn't empty
 			    it->second[1].push_back(*it->second[0].begin());
+			    check2.push_back(*check1.begin());
+			    check1.pop_front();
 			    //display drinks made for each drink on one line
 			    cout << *it->second[0].begin() << ", ";
 			    it->second[0].erase(it->second[0].begin());
 			}
+			if (check1 != it->second[0] || check2 !=it->second[1])
+				return false;
 		}
 		cout << endl;
 	}
