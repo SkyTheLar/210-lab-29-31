@@ -78,28 +78,30 @@ int main() {
 	}
 	cout << "\n\n";
 
-	timeCycle(cafe, drinks, names);
+	//begin simulation
+	//loop through simulation function for 48 intervals
+	for (int i = 0; i < INTERVALS; i++)
+		timeCycle(cafe, drinks, names);
 
+	//end simulation
+
+	//display final map data
 	for (auto pair : cafe) {
 			cout << "Drink: " << pair.first
-				 << "; Ordered: ";
+				 << "\n\tOrdered: ";
 			for (string n : pair.second[0])
 				cout << n << " ";
-			cout << "; Made: ";
+			cout << "\n\tMade: ";
 			for (string n : pair.second[1])
+				cout << n << " ";
+			cout << "\n\tServed: ";
+			for (string n : pair.second[2])
 				cout << n << " ";
 			cout << endl;
 		}
 		cout << "\n\n";
 
-	//begin simulation
-		//loop through simulation function for 48 intervals
-
-	//end simulation
-		//display final map data
-
 	return 0;
-//end main function
 }
 
 //random name function
@@ -169,19 +171,23 @@ void timeCycle(map<string, array<list<string>, 3>> &cafe, string drinks[], strin
 	for (auto it = cafe.begin(); it != cafe.end(); it++) {
 		int toServe;
 		//if made.length >= max drinks served
-		if (it->second[3].size >= MAX_SV)
+		if (it->second[1].size() >= MAX_SV)
 			//serve that many drinks
 			toServe = MAX_SV;
 		else
 			//serve all the drinks
-			toServe = it->second[3].size;
+			toServe = it->second[1].size();
 
+		cout << it->first << " served to: ";
 		for (int i = 0; i < toServe; i++) {
-		it->second[2].push_back(*it->second[1].begin());
-				    it->second[1].erase(it->second[1].begin());
-		//display drinks served for each drink on one line
+			it->second[2].push_back(*it->second[1].begin());
+			//display drinks served for each drink on one line
+		    cout << *it->second[1].begin() << ", ";
+			it->second[1].erase(it->second[1].begin());
 		}
+		cout << endl;
 	}
+	cout << endl;
 
 	counter++;
 }
