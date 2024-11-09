@@ -95,11 +95,12 @@ int main() {
 	in.close();
 
 	//second test
-	for (int i = 0; i < 10; i++)
+	for (int i = 0; i < 10; i++) {
 		if (!timeCycleTests(cafe, drinks, names)) {
 			cout << "Time cycle test failed :(\n\n";
 			return -1;
 		}
+	}
 	cout << "Time cycle test passed!\n\n";
 
 	//display starting list
@@ -297,9 +298,13 @@ bool timeCycleTests(map<string, array<list<string>, 3>> &cafe, string drinks[], 
 			//serve all the drinks
 			toServe = it->second[1].size();
 
+		check1 = it->second[1];
+		check2 = it->second[2];
 		cout << it->first << " served to: ";
 		for (int i = 0; i < toServe; i++) {
 			it->second[2].push_back(*it->second[1].begin());
+			check2.push_back(*check1.begin());
+			check1.pop_front();
 			//display drinks served for each drink on one line
 		    cout << *it->second[1].begin() << ", ";
 			it->second[1].erase(it->second[1].begin());
