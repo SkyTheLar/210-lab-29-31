@@ -20,6 +20,16 @@ string getName(string[]); //random name function
 int numMade(); //random number increasingly less likely to be higher
 void timeCycle(map<string, array<list<string>, 3>>&, string[], string[]); //one time cycle function
 
+//test functions
+bool testGetName() {
+	bool pass;
+	string output[100];
+	string input[2] = {"name1", "name2"};
+	for (int i = 0; i < 100; i++) {
+		output[i] = getName(input);
+	}
+	return pass;
+}
 int main() {
 	srand(time(0));
 	//initialize map with string keys and array of 3 lists value
