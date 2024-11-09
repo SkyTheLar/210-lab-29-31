@@ -269,19 +269,25 @@ bool timeCycleTests(map<string, array<list<string>, 3>> &cafe, string drinks[], 
 		//random number drinks to be made
 		//move that many names from the front of ordered to the back of made
 		cout << it->first << " was made for: ";
+		/*************************************/
 		check1 = it->second[0];
 		check2 = it->second[1];
+		/*************************************/
 		for (int i = 0; i < numMade(); i++) {
 			if (it->second[0].begin() != it->second[0].end()){ //if the list isn't empty
 			    it->second[1].push_back(*it->second[0].begin());
+			    /*************************************/
 			    check2.push_back(*check1.begin());
 			    check1.pop_front();
+			    /*************************************/
 			    //display drinks made for each drink on one line
 			    cout << *it->second[0].begin() << ", ";
 			    it->second[0].erase(it->second[0].begin());
 			}
+			/*************************************/
 			if (check1 != it->second[0] || check2 !=it->second[1])
 				return false;
+			/*************************************/
 		}
 		cout << endl;
 	}
@@ -298,17 +304,25 @@ bool timeCycleTests(map<string, array<list<string>, 3>> &cafe, string drinks[], 
 			//serve all the drinks
 			toServe = it->second[1].size();
 
+		/*************************************/
 		check1 = it->second[1];
 		check2 = it->second[2];
+		/*************************************/
 		cout << it->first << " served to: ";
 		for (int i = 0; i < toServe; i++) {
 			it->second[2].push_back(*it->second[1].begin());
+			/*************************************/
 			check2.push_back(*check1.begin());
 			check1.pop_front();
+			/*************************************/
 			//display drinks served for each drink on one line
 		    cout << *it->second[1].begin() << ", ";
 			it->second[1].erase(it->second[1].begin());
 		}
+		/*************************************/
+		if (check1 != it->second[1] || check2 !=it->second[2])
+			return false;
+		/*************************************/
 		cout << endl;
 	}
 	cout << endl;
