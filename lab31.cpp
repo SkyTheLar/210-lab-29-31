@@ -14,7 +14,7 @@ COMSC 210 | Lab 29 | Skylar Robinson | IDE Used: Eclipse
 using namespace std;
 
 //define constants
-int const INTERVALS = 4, MAX_OR = 30, MAX_SV = 2, NAMES = 99, DRINKS = 41;
+int const INTERVALS = 48, MAX_OR = 40, MAX_SV = 2, NAMES = 99, DRINKS = 41;
 
 string getName(string[]); //random name function
 int numMade(); //random number increasingly less likely to be higher
@@ -118,7 +118,7 @@ int numMade() {
 	bool again = true;
 	while(again) {
 		n++;
-		if ((rand() % 100) <= 50)
+		if ((rand() % 100) <= 25)
 			again = false;
 	}
 	return n;
@@ -154,17 +154,18 @@ void timeCycle(map<string, array<list<string>, 3>> &cafe, string drinks[], strin
 	for (auto it = cafe.begin(); it != cafe.end(); it++) {
 		//random number drinks to be made
 		//move that many names from the front of ordered to the back of made
-		if (it->second[0].begin() != it->second[0].end())
+		if (it->second[0].begin() != it->second[0].end()) {
 			cout << it->first << " was made for: ";
-		for (int i = 0; i < numMade(); i++) {
-			if (it->second[0].begin() != it->second[0].end()){ //if the list isn't empty
-			    it->second[1].push_back(*it->second[0].begin());
-			    //display drinks made for each drink on one line
-			    cout << *it->second[0].begin() << ", ";
-			    it->second[0].erase(it->second[0].begin());
+			for (int i = 0; i < numMade(); i++) {
+				if (it->second[0].begin() != it->second[0].end()){ //if the list isn't empty
+					it->second[1].push_back(*it->second[0].begin());
+					//display drinks made for each drink on one line
+					cout << *it->second[0].begin() << " ";
+					it->second[0].erase(it->second[0].begin());
+				}
 			}
+			cout << endl;
 		}
-		cout << endl;
 	}
 	cout << endl;
 
@@ -179,15 +180,16 @@ void timeCycle(map<string, array<list<string>, 3>> &cafe, string drinks[], strin
 			//serve all the drinks
 			toServe = it->second[1].size();
 
-		if (it->second[1].begin() != it->second[1].end())
+		if (it->second[1].begin() != it->second[1].end()) {
 			cout << it->first << " served to: ";
-		for (int i = 0; i < toServe; i++) {
-			it->second[2].push_back(*it->second[1].begin());
-			//display drinks served for each drink on one line
-		    cout << *it->second[1].begin() << ", ";
-			it->second[1].erase(it->second[1].begin());
+			for (int i = 0; i < toServe; i++) {
+				it->second[2].push_back(*it->second[1].begin());
+				//display drinks served for each drink on one line
+				cout << *it->second[1].begin() << " ";
+				it->second[1].erase(it->second[1].begin());
+			}
+			cout << endl;
 		}
-		cout << endl;
 	}
 	cout << endl;
 

@@ -25,4 +25,22 @@ were and changed the constants to fix the problem.
 
 4:
 The console was being filled with lines for drinks being made
-when no one was getting those drinks made for them.
+when no one was getting those drinks made for them. I fixed this
+by making the output conditional on the ordered list not being
+empty. I added the same thing for the served list depending on the
+made list.
+
+5:
+Fixing the above bug caused blank lines to show since the line breaks
+were at a seperate point of the text. I couldn't add the same conditional
+to the line breaks since it was after the list was modified so istead I 
+just made the entire list editing chunk conditional on the list not being
+empty. Again I did the same thing for the served chunk.
+
+6:
+The commas spacing the names in the made and served statements cause
+a comma on the end of a line where there shouldn't be one. Because the other
+displays don't have any kind of commas I just removed these and replaced them
+with spaces which wouldn't cause any end of line issues.
+
+7:
