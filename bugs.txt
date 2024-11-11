@@ -1,0 +1,20 @@
+1:
+(fixed during alpha relase)
+The statement "if (it != cafe.end())" in the drinks made
+part of the time cycle function was meant to check if the
+ordered list is empty before attempting to move an item from
+the ordered list to the made list. This if statement wasn't
+properly checking that and I would get range errors on about
+50% of runs. I replaced the statement with 
+"if (it->second[0].begin() != it->second[0].end())"
+
+2:
+(fixed during alpha relase)
+In the drinks ordered part of the time cycle function the 
+if-else statement that determined how many drinks to move
+caused errors because it was checking the the length of 
+the ordered list ("if (it->second[2].size() >= MAX_SV)")
+instead of the made list. I fixed this by changing the index
+to point to the right list. "if (it->second[1].size() >= MAX_SV)"
+
+3:
