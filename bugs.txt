@@ -66,3 +66,12 @@ I fixed it by adding "c = 0;" after each range based for loop.
 The name wrapper would add an enter after the fifth name even if there was no 
 sixth name. I fixed this by moving it to the top of the for loop. The incrementer
 stayed in the same place.
+
+11:
+The above change added an enter at the beginning of every list, so I added the
+conditon that c didn't equal 0.
+
+12:
+To better indicate the starting state of the list with only one name on the
+ordered list, I copied the output format for the end of the simulation to
+the beginning.

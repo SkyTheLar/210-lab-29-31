@@ -70,13 +70,19 @@ int main() {
 
 	//display starting list
 	for (auto pair : cafe) {
-		cout << "Drink: " << pair.first
-			 << "; Ordered: ";
-		for (string n : pair.second[0])
-			cout << n << " ";
-		cout << endl;
-	}
-	cout << "\n\n";
+			cout << "Drink: " << pair.first
+				 << "\n\tOrdered: ";
+			for (string n : pair.second[0])
+				cout << n << " ";
+			cout << "\n\tMade: ";
+			for (string n : pair.second[1])
+				cout << n << " ";
+			cout << "\n\tServed: ";
+			for (string n : pair.second[2])
+				cout << n << " ";
+			cout << endl;
+		}
+		cout << "\n\n";
 
 	//begin simulation
 	//loop through simulation function for 48 intervals
@@ -91,7 +97,7 @@ int main() {
 			cout << "Drink: " << pair.first
 				 << "\n\tOrdered: ";
 			for (string n : pair.second[0]) {
-				if (c % 5 == 0)
+				if (c % 5 == 0 && c != 0)
 					cout << "\n\t         ";
 				cout << n << " ";
 				c++;
@@ -99,7 +105,7 @@ int main() {
 			c = 0;
 			cout << "\n\tMade: ";
 			for (string n : pair.second[1]) {
-				if (c % 5 == 0)
+				if (c % 5 == 0 && c != 0)
 					cout << "\n\t      ";
 				cout << n << " ";
 				c++;
@@ -108,7 +114,7 @@ int main() {
 			c = 0;
 			cout << "\n\tServed: ";
 			for (string n : pair.second[2]) {
-				if (c % 5 == 0)
+				if (c % 5 == 0 && c != 0)
 					cout << "\n\t        ";
 				cout << n << " ";
 				c++;
