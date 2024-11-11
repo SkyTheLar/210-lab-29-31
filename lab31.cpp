@@ -14,7 +14,7 @@ COMSC 210 | Lab 29 | Skylar Robinson | IDE Used: Eclipse
 using namespace std;
 
 //define constants
-int const INTERVALS = 4, MAX_OR = 10, MAX_SV = 2, NAMES = 3, DRINKS = 5;
+int const INTERVALS = 4, MAX_OR = 30, MAX_SV = 2, NAMES = 99, DRINKS = 41;
 
 string getName(string[]); //random name function
 int numMade(); //random number increasingly less likely to be higher
@@ -31,7 +31,7 @@ int main() {
 
 	//open people names file
 	ifstream in;
-	in.open("alphanames.txt");
+	in.open("names.txt");
 	//check for file open error
 	if (!in) {
 		cout << "File error.\n";
@@ -47,7 +47,7 @@ int main() {
 	in.close();
 
 	//open file of drink names
-	in.open("alphadrinks.txt");
+	in.open("drinks.txt");
 	//check for file open error
 	if (!in) {
 		cout << "File error.\n";
@@ -154,7 +154,8 @@ void timeCycle(map<string, array<list<string>, 3>> &cafe, string drinks[], strin
 	for (auto it = cafe.begin(); it != cafe.end(); it++) {
 		//random number drinks to be made
 		//move that many names from the front of ordered to the back of made
-		cout << it->first << " was made for: ";
+		if (it->second[0].begin() != it->second[0].end())
+			cout << it->first << " was made for: ";
 		for (int i = 0; i < numMade(); i++) {
 			if (it->second[0].begin() != it->second[0].end()){ //if the list isn't empty
 			    it->second[1].push_back(*it->second[0].begin());
@@ -178,7 +179,8 @@ void timeCycle(map<string, array<list<string>, 3>> &cafe, string drinks[], strin
 			//serve all the drinks
 			toServe = it->second[1].size();
 
-		cout << it->first << " served to: ";
+		if (it->second[1].begin() != it->second[1].end())
+			cout << it->first << " served to: ";
 		for (int i = 0; i < toServe; i++) {
 			it->second[2].push_back(*it->second[1].begin());
 			//display drinks served for each drink on one line

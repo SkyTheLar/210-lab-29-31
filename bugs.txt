@@ -18,3 +18,11 @@ instead of the made list. I fixed this by changing the index
 to point to the right list. "if (it->second[1].size() >= MAX_SV)"
 
 3:
+When I first changed the alpha input files to the actual input
+files the program would terminate. I realized this was because
+the constants no longer matched with how many file entries there
+were and changed the constants to fix the problem.
+
+4:
+The console was being filled with lines for drinks being made
+when no one was getting those drinks made for them.
