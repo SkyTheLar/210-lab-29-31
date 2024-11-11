@@ -44,3 +44,11 @@ displays don't have any kind of commas I just removed these and replaced them
 with spaces which wouldn't cause any end of line issues.
 
 7:
+Because I wanted there to be at least a small chance that a drink would be
+made but not served the same time cycle, I increased the probability of the
+number of made drinks being one greater from 50% to 75%. To compensate for
+this increase in made drinks I also increased the constant for how many
+drinks would be ordered. I also increased this number to account for the
+increased number of drinks read from the drink file.
+
+8:

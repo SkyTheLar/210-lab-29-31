@@ -14,7 +14,7 @@ COMSC 210 | Lab 29 | Skylar Robinson | IDE Used: Eclipse
 using namespace std;
 
 //define constants
-int const INTERVALS = 48, MAX_OR = 40, MAX_SV = 2, NAMES = 99, DRINKS = 41;
+int const INTERVALS = 48, MAX_OR = 65, MAX_SV = 2, NAMES = 99, DRINKS = 41;
 
 string getName(string[]); //random name function
 int numMade(); //random number increasingly less likely to be higher
@@ -86,6 +86,7 @@ int main() {
 	//end simulation
 
 	//display final map data
+	int c = 0;
 	for (auto pair : cafe) {
 			cout << "Drink: " << pair.first
 				 << "\n\tOrdered: ";
@@ -118,7 +119,7 @@ int numMade() {
 	bool again = true;
 	while(again) {
 		n++;
-		if ((rand() % 100) <= 25)
+		if ((rand() % 100) <= 75)
 			again = false;
 	}
 	return n;
