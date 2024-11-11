@@ -90,14 +90,30 @@ int main() {
 	for (auto pair : cafe) {
 			cout << "Drink: " << pair.first
 				 << "\n\tOrdered: ";
-			for (string n : pair.second[0])
+			for (string n : pair.second[0]) {
+				if (c % 5 == 0)
+					cout << "\n\t         ";
 				cout << n << " ";
+				c++;
+			}
+			c = 0;
 			cout << "\n\tMade: ";
-			for (string n : pair.second[1])
+			for (string n : pair.second[1]) {
+				if (c % 5 == 0)
+					cout << "\n\t      ";
 				cout << n << " ";
+				c++;
+
+			}
+			c = 0;
 			cout << "\n\tServed: ";
-			for (string n : pair.second[2])
+			for (string n : pair.second[2]) {
+				if (c % 5 == 0)
+					cout << "\n\t        ";
 				cout << n << " ";
+				c++;
+			}
+			c = 0;
 			cout << endl;
 		}
 		cout << "\n\n";

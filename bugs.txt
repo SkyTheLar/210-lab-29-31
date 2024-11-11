@@ -49,6 +49,20 @@ made but not served the same time cycle, I increased the probability of the
 number of made drinks being one greater from 50% to 75%. To compensate for
 this increase in made drinks I also increased the constant for how many
 drinks would be ordered. I also increased this number to account for the
-increased number of drinks read from the drink file.
+increased number of drinks read from the drink file. It didn't change much
+but every once and a while there was a drink left on the made list which
+was what I wanted.
 
 8:
+To make the final output of the map better I added a conditonal enter and
+alignment that would make the names in each list wrap every 5 names.
+
+9:
+The names would sometimes wrap before hitting 5 names on the first line of a 
+list. This was because I needed to reset the counter in between each list.
+I fixed it by adding "c = 0;" after each range based for loop.
+
+10:
+The name wrapper would add an enter after the fifth name even if there was no 
+sixth name. I fixed this by moving it to the top of the for loop. The incrementer
+stayed in the same place.
