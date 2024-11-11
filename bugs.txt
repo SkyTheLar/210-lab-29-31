@@ -1,0 +1,77 @@
+1:
+(fixed during alpha relase)
+The statement "if (it != cafe.end())" in the drinks made
+part of the time cycle function was meant to check if the
+ordered list is empty before attempting to move an item from
+the ordered list to the made list. This if statement wasn't
+properly checking that and I would get range errors on about
+50% of runs. I replaced the statement with 
+"if (it->second[0].begin() != it->second[0].end())"
+
+2:
+(fixed during alpha relase)
+In the drinks ordered part of the time cycle function the 
+if-else statement that determined how many drinks to move
+caused errors because it was checking the the length of 
+the ordered list ("if (it->second[2].size() >= MAX_SV)")
+instead of the made list. I fixed this by changing the index
+to point to the right list. "if (it->second[1].size() >= MAX_SV)"
+
+3:
+When I first changed the alpha input files to the actual input
+files the program would terminate. I realized this was because
+the constants no longer matched with how many file entries there
+were and changed the constants to fix the problem.
+
+4:
+The console was being filled with lines for drinks being made
+when no one was getting those drinks made for them. I fixed this
+by making the output conditional on the ordered list not being
+empty. I added the same thing for the served list depending on the
+made list.
+
+5:
+Fixing the above bug caused blank lines to show since the line breaks
+were at a seperate point of the text. I couldn't add the same conditional
+to the line breaks since it was after the list was modified so istead I 
+just made the entire list editing chunk conditional on the list not being
+empty. Again I did the same thing for the served chunk.
+
+6:
+The commas spacing the names in the made and served statements cause
+a comma on the end of a line where there shouldn't be one. Because the other
+displays don't have any kind of commas I just removed these and replaced them
+with spaces which wouldn't cause any end of line issues.
+
+7:
+Because I wanted there to be at least a small chance that a drink would be
+made but not served the same time cycle, I increased the probability of the
+number of made drinks being one greater from 50% to 75%. To compensate for
+this increase in made drinks I also increased the constant for how many
+drinks would be ordered. I also increased this number to account for the
+increased number of drinks read from the drink file. It didn't change much
+but every once and a while there was a drink left on the made list which
+was what I wanted.
+
+8:
+To make the final output of the map better I added a conditonal enter and
+alignment that would make the names in each list wrap every 5 names.
+
+9:
+The names would sometimes wrap before hitting 5 names on the first line of a 
+list. This was because I needed to reset the counter in between each list.
+I fixed it by adding "c = 0;" after each range based for loop.
+
+10:
+The name wrapper would add an enter after the fifth name even if there was no 
+sixth name. I fixed this by moving it to the top of the for loop. The incrementer
+stayed in the same place.
+
+11:
+The above change added an enter at the beginning of every list, so I added the
+conditon that c didn't equal 0.
+
+12:
+To better indicate the starting state of the list with only one name on the
+ordered list, I copied the output format for the end of the simulation to
+the beginning.
